@@ -34,5 +34,7 @@ Repozytorium z zalążkiem do zadania ma następującą strukturę:
 ## Odnośniki do źródeł
 [Strona kursu z Programowania Obiektowego](https://kcir.pwr.edu.pl/~kreczmer/po/)
 
+Inicjacyjny commit
+
 
 
