@@ -2,6 +2,7 @@
 #include "ComplexNumber.h"
 #include <iostream>
 #include "ComplexExpresion.h"
+#include "Exam.h"
 
 TEST(testSubtract, test1)
 {
@@ -355,5 +356,17 @@ TEST (TestCalculatingResult, test22) {
 
     ComplexExpresion ComExp3 = ComplexExpresion(ComplexNumber(2,4), ComplexNumber(2,0), '/');
     ComplexNumber result3 = ComExp3.getResult();
+    EXPECT_EQ(result3, ComplexNumber(1,2));
+}
+
+TEST (TestExamConstructor, test23) {
+
+
+    Exam exam1 = Exam();
+    Exam exam2 = Exam();
+    exam1.setScore(0);
+    exam1.setComExp(ComplexExpresion(ComplexNumber,))
+    EXPECT_EQ(exam1, ComplexNumber(4,4));
+    EXPECT_EQ(result2, ComplexNumber(6,6));
     EXPECT_EQ(result3, ComplexNumber(1,2));
 }
