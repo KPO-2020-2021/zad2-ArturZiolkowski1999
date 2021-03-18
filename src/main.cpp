@@ -1,46 +1,46 @@
 #include <iostream>
-#include "BazaTestu.hh"
+#include "ComplexNumber.h"
+#include "ComplexExpresion.h"
 
-using namespace std;
+std::string argErrorHandling(int argc, char **argv);
 
+int main(int argc, char** argv) {
 
+//    ComplexNumber C;
+//    char x;
+//
+//    std::cin >> C >>  x ;
+//
+//    std::cout << C << "__" << x << std::endl;
 
+   ComplexExpresion ComExp;
+   std::cin >> ComExp;
+   std::cout << ComExp << " <- shown \n" << std::endl;
 
-int main(int argc, char **argv)
-{
+//    std::string level = argErrorHandling(argc, argv);
+//
+//    ComplexNumber Com;
+//    std::cout << "podaj complex \n";
+//    std::cin >> Com;
+//    ComplexNumber Com1(2.0001,2.00001);
+//    std::cout << "sparadzam czy takie same \n";
+//    bool sprawdzam = (Com == Com1);
+//    std::cout << sprawdzam << "; \n" << Com << std::endl;
 
-  if (argc < 2) {
-    cout << endl;
-    cout << " Brak opcji okreslajacej rodzaj testu." << endl;
-    cout << " Dopuszczalne nazwy to:  latwy, trudny." << endl;
-    cout << endl;
-    return 1;
-  }
+}
 
+std::string argErrorHandling(int argc, char **argv){
+    if(argc < 2){
+        throw std::invalid_argument("Additional argument required");
+    } else if(argc > 2){
+        throw std::invalid_argument("Too many arguments");
+    }
 
-  BazaTestu   BazaT = { nullptr, 0, 0 };
+    std::string level = argv[1];
 
-  if (InicjalizujTest(&BazaT,argv[1]) == false) {
-    cerr << " Inicjalizacja testu nie powiodla sie." << endl;
-    return 1;
-  }
+    if (level != "easy" && level != "hard"){
+        throw std::invalid_argument("Unknown argument");
+    }
 
-
-  
-  cout << endl;
-  cout << " Start testu arytmetyki zespolonej: " << argv[1] << endl;
-  cout << endl;
-
-  WyrazenieZesp   WyrZ_PytanieTestowe;
-  
-  while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {
-    cout << " Czesc rzeczywista pierwszego argumentu: ";
-    cout << WyrZ_PytanieTestowe.Arg1.re << endl;
-  }
-
-  
-  cout << endl;
-  cout << " Koniec testu" << endl;
-  cout << endl;
-
+    return level;
 }
