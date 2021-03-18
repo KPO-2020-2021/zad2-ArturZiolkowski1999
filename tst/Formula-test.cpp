@@ -333,3 +333,27 @@ TEST (TestComExpInstream, test20) {
     ist >> ComExp1;
     EXPECT_EQ(ComExp1, ComExp2);
 }
+
+TEST (TestComExpInstreamThrow, test21) {
+
+    ComplexExpresion ComExp;
+    std::stringstream ist;
+    ist << "(1+i)^(3+3i)";
+    EXPECT_THROW(ist >> ComExp, std::exception);
+}
+
+TEST (TestCalculatingResult, test22) {
+
+
+    ComplexExpresion ComExp1 = ComplexExpresion(ComplexNumber(1,1), ComplexNumber(3,3), '+');
+    ComplexNumber result1 = ComExp1.getResult();
+    EXPECT_EQ(result1, ComplexNumber(4,4));
+
+    ComplexExpresion ComExp2 = ComplexExpresion(ComplexNumber(2,0), ComplexNumber(3,3), '*');
+    ComplexNumber result2 = ComExp2.getResult();
+    EXPECT_EQ(result2, ComplexNumber(6,6));
+
+    ComplexExpresion ComExp3 = ComplexExpresion(ComplexNumber(2,4), ComplexNumber(2,0), '/');
+    ComplexNumber result3 = ComExp3.getResult();
+    EXPECT_EQ(result3, ComplexNumber(1,2));
+}

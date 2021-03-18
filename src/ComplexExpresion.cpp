@@ -14,6 +14,7 @@ ComplexExpresion::ComplexExpresion(ComplexNumber Com1, ComplexNumber Com2, char 
     this -> Com1 = Com1;
     this -> Com2 = Com2;
     this -> op = op;
+    calculateResult();
 }
 
 void ComplexExpresion::setCom1(ComplexNumber C) {
@@ -43,12 +44,18 @@ bool operator==(const ComplexExpresion &ComExp1, const ComplexExpresion &ComExp2
 
 std::istream &operator>>(std::istream &ist, ComplexExpresion &ComExp) {
 
+    char tmp;
+
     ist >> ComExp.Com1;
     if (ist.fail()){
         throw std::invalid_argument("invalid argument");
     }
+    tmp = ist.peek();
+    if (tmp != '+' && tmp != '-' && tmp != '/' && tmp != '*'){
+        throw std::invalid_argument("invalid argument");
+    }
     ist >> ComExp.op;
-    if ((ist.fail()) || (ComExp.op != '+' && ComExp.op != '-' && ComExp.op != '/' && ComExp.op != '*')){
+    if (ist.fail()){
         throw std::invalid_argument("invalid argument");
     }
     ist >> ComExp.Com2;
@@ -74,3 +81,24 @@ std::ostream &operator<<(std::ostream &ost, const ComplexExpresion &comExp) {
     }
     return ost;
 }
+
+void ComplexExpresion::calculateResult() {
+
+    if (this -> op == '+'){
+        this -> result = (this ->Com1) + (this -> Com2);
+    }else if (this -> op == '-'){
+        this -> result = (this -> Com1) - (this -> Com2);
+    }else if (this -> op == '*'){
+        this -> result = (this -> Com1) * (this -> Com2);
+    } else if (this -> op == '/'){
+        this -> result = (this -> Com1) / (this -> Com2);
+    }else{
+        throw std::invalid_argument("unknown operator");
+    }
+}
+
+ComplexNumber ComplexExpresion::getResult() {
+    return this -> result;
+}
+
+

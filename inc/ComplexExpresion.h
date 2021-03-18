@@ -16,17 +16,22 @@ private:
     char op;
     ComplexNumber result;
 
+    void calculateResult();
+
 public:
     ComplexExpresion();
     ComplexExpresion(ComplexNumber Com1, ComplexNumber Com2, char oper);
+
     friend std::ostream & operator<<(std::ostream & ost, const ComplexExpresion &ComExp);
     friend std::istream & operator>>(std::istream & ist, ComplexExpresion &ComExp);
     friend bool operator==(const ComplexExpresion &ComExp1, const ComplexExpresion &ComExp2);
+
+
     void setCom1(ComplexNumber C);
     void setCom2(ComplexNumber C);
     void setOp(char op);
     void setResult(ComplexNumber C);
-
+    ComplexNumber getResult();
 
 };
 #endif //COMPLEXNUMBER_COMPLEXEXPRESION_H
