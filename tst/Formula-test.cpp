@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "ComplexNumber.h"
+#include <sstream>
 #include <iostream>
 #include "ComplexExpresion.h"
 #include "Exam.h"
@@ -365,8 +366,8 @@ TEST (TestExamConstructor, test23) {
     Exam exam1 = Exam();
     Exam exam2 = Exam();
     exam1.setScore(0);
-    exam1.setComExp(ComplexExpresion(ComplexNumber,))
-    EXPECT_EQ(exam1, ComplexNumber(4,4));
-    EXPECT_EQ(result2, ComplexNumber(6,6));
-    EXPECT_EQ(result3, ComplexNumber(1,2));
+    exam1.setComExp(ComplexExpresion(ComplexNumber(), ComplexNumber(), '+'));
+    exam1.setDifficulty(EASY);
+    exam1.setQuestionNum(0);
+    EXPECT_EQ(exam1, exam2);
 }

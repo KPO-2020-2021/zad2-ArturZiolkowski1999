@@ -7,14 +7,14 @@
 Exam::Exam() {
     this -> score = 0;
     this -> questionNum =0;
-    this -> comExp = CompexExpresion();
+    this -> comExp = ComplexExpresion();
     this -> difficulty = EASY;
 }
 
 Exam::Exam(char difficulty) {
     this -> score = 0;
     this -> questionNum =0;
-    this -> comExp = CompexExpresion();
+    this -> comExp = ComplexExpresion();
     if(difficulty != EASY && difficulty != HARD){
         throw std::invalid_argument("invalid dificulty");
     }else{
@@ -27,7 +27,7 @@ void Exam::setScore(int score) {
 }
 
 void Exam::setDifficulty(char difficulty) {
-    this -> difficulty = difficultye
+    this -> difficulty = difficulty;
 }
 
 void Exam::setQuestionNum(int questionNum) {
@@ -47,3 +47,31 @@ bool operator==(const Exam &Exam1, const Exam &Exam2) {
     }
 }
 
+
+void Exam::examLoop() {;
+    std::string examFile;
+
+    if(this -> difficulty == EASY){
+        examFile = "easy.txt";
+    }else if (this -> difficulty == HARD){
+        examFile = "hard.txt";
+    }else{
+        throw std::invalid_argument("no difficulty selected");
+    }
+
+
+    std::stringstream sts;
+    std::string tmp;
+    std::ifstream myReadFile;
+    myReadFile.open(examFile);
+    if(myReadFile.is_open()){
+        while(std::getline(myReadFile, tmp)){
+
+            sts << tmp;
+//            std::cout << tmp;
+            sts >> (this -> comExp);
+            std::cout << (this -> comExp) << std::endl;
+        }
+    }
+    myReadFile.close();
+}

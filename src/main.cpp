@@ -1,11 +1,15 @@
 #include <iostream>
 #include "ComplexNumber.h"
 #include "ComplexExpresion.h"
+#include "Exam.h"
 
 std::string argErrorHandling(int argc, char **argv);
 
 int main(int argc, char** argv) {
 
+
+    Exam myExam = Exam(EASY);
+    myExam.examLoop();
 //    ComplexNumber C;
 //    char x;
 //
@@ -13,9 +17,9 @@ int main(int argc, char** argv) {
 //
 //    std::cout << C << "__" << x << std::endl;
 
-   ComplexExpresion ComExp;
-   std::cin >> ComExp;
-   std::cout << ComExp << " <- shown \n" << std::endl;
+//   ComplexExpresion ComExp;
+//   std::cin >> ComExp;
+//   std::cout << ComExp << " <- shown \n" << std::endl;
 
 //    std::string level = argErrorHandling(argc, argv);
 //

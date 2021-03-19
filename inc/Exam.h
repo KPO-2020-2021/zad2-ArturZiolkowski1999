@@ -5,6 +5,8 @@
 #define COMPLEX_NUMBER_EXAM_H
 #include "ComplexExpresion.h"
 #include <iostream>
+#include <fstream>
+#include <sstream>
 const char EASY = 'e';
 const char HARD = 'h';
 
@@ -23,6 +25,7 @@ public:
     void setDifficulty(char difficulty);
     void setQuestionNum(int questionNum);
     void setComExp(ComplexExpresion comExp);
+    void examLoop();
 
 };
 #endif //COMPLEX_NUMBER_EXAM_H
