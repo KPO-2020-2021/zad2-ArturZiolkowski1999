@@ -16,7 +16,7 @@ private:
     char op;
     ComplexNumber result;
 
-    void calculateResult();
+
 
 public:
     ComplexExpresion();
@@ -31,6 +31,7 @@ public:
     void setCom2(ComplexNumber C);
     void setOp(char op);
     void setResult(ComplexNumber C);
+    void calculateResult();
     ComplexNumber getResult();
 
 };

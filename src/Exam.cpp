@@ -58,19 +58,36 @@ void Exam::examLoop() {;
     }else{
         throw std::invalid_argument("no difficulty selected");
     }
-
-
+    int iterator = 0;
+    ComplexNumber answer = ComplexNumber();
+    ComplexExpresion tmpExp;
     std::stringstream sts;
     std::string tmp;
     std::ifstream myReadFile;
     myReadFile.open(examFile);
     if(myReadFile.is_open()){
         while(std::getline(myReadFile, tmp)){
-
+            iterator++;
             sts << tmp;
-//            std::cout << tmp;
-            sts >> (this -> comExp);
+            sts >> tmpExp;
+            setComExp(tmpExp);
+            std::cout << "Question number: " << iterator << std::endl;
             std::cout << (this -> comExp) << std::endl;
+
+            answer = ComplexNumber();
+            std::cin >> answer;
+            std::cin.clear();
+            std::cin.ignore();
+//            std::cin >> tmp;
+//            sts << tmp;
+//            sts >> answer;
+
+            comExp.calculateResult();
+            if(comExp.getResult() == answer){
+                std::cout << "Good answer \n";
+            }else {
+                std::cout << "Wrong answer \n";
+            }
         }
     }
     myReadFile.close();

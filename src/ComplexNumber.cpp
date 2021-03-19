@@ -108,6 +108,11 @@ std::istream &operator>>(std::istream &ist, ComplexNumber &complexObject) {
     double real, imaginary;
     char oper, i, bra, ket;
 
+
+    if(ist.peek() == '\n'){
+            ist >> bra;
+        }
+
     if(ist.peek() != '('){
         throw std::invalid_argument("unknown argument");
     }
