@@ -59,6 +59,8 @@ void Exam::examLoop() {;
         throw std::invalid_argument("no difficulty selected");
     }
     int iterator = 0;
+    int mistake = 0;
+    int score = 0;
     ComplexNumber answer = ComplexNumber();
     ComplexExpresion tmpExp;
     std::stringstream sts;
@@ -68,27 +70,55 @@ void Exam::examLoop() {;
     if(myReadFile.is_open()){
         while(std::getline(myReadFile, tmp)){
             iterator++;
+            setQuestionNum(iterator);
             sts << tmp;
             sts >> tmpExp;
             setComExp(tmpExp);
             std::cout << "Question number: " << iterator << std::endl;
             std::cout << (this -> comExp) << std::endl;
-
             answer = ComplexNumber();
-            std::cin >> answer;
-            std::cin.clear();
-            std::cin.ignore();
-//            std::cin >> tmp;
-//            sts << tmp;
-//            sts >> answer;
+            mistake = 0;
+
+            while(mistake <3){
+                if(std::cin >> answer){
+                    std::cin.clear();
+                    std::cin.ignore();
+                    break;
+                }
+                if (!(std::cin >> answer)){
+                    std::cin.clear();
+                    std::cin.ignore();
+                    std::cout << "correct your syntax\n";
+
+                }
+                mistake++;
+            }
 
             comExp.calculateResult();
             if(comExp.getResult() == answer){
-                std::cout << "Good answer \n";
+                std::cout << "Good answer\n";
+                score ++;
+                setScore(score);
             }else {
-                std::cout << "Wrong answer \n";
+                std::cout << "Wrong answer, correct is:" << comExp.getResult() << std::endl;
             }
         }
     }
     myReadFile.close();
+}
+
+double Exam::calculateStats() {
+
+    double result = (double)(100 * (double)(this -> score) / (double)(this -> questionNum));
+    std::cout << "Your score: " << (this -> score) << "/" << (this -> questionNum) << std::endl;
+    std::cout << "This is: " << result << "%\n";
+    return result;
+}
+
+int Exam::getScore() {
+    return (this->score);
+}
+
+int Exam::getQuestionNum() {
+    return (this->questionNum);
 }

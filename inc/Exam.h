@@ -25,7 +25,9 @@ public:
     void setDifficulty(char difficulty);
     void setQuestionNum(int questionNum);
     void setComExp(ComplexExpresion comExp);
+    int getScore();
+    int getQuestionNum();
     void examLoop();
-
+    double calculateStats();
 };
 #endif //COMPLEX_NUMBER_EXAM_H

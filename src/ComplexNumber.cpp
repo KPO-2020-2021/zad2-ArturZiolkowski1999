@@ -45,7 +45,7 @@ ComplexNumber ComplexNumber::operator- (const ComplexNumber &complexObject) {
 
 bool operator==(const ComplexNumber &complexObject1, const ComplexNumber &complexObject2) {
 
-    if(std::abs((complexObject1.Real - complexObject2.Real) < MIN_THRESHOLD) &&
+    if((std::abs(complexObject1.Real - complexObject2.Real) < MIN_THRESHOLD) &&
         (std::abs(complexObject1.Imaginary - complexObject2.Imaginary) < MIN_THRESHOLD)){
         return true;
     }else{
@@ -109,14 +109,16 @@ std::istream &operator>>(std::istream &ist, ComplexNumber &complexObject) {
     char oper, i, bra, ket;
 
 
-    if(ist.peek() == '\n'){
-            ist >> bra;
-        }
 
-    if(ist.peek() != '('){
-        throw std::invalid_argument("unknown argument");
+    if(ist.fail()){
+        ist.setstate(std::ios::failbit);
+        return ist;
     }
-    ist >> bra ;
+    ist >> bra;
+    if(bra != '('){
+        ist.setstate(std::ios::failbit);
+        return ist;
+    }
     if(ist.peek() == 'i'){ /* (-i)  (i) type */
         ist >> i;
         if (ist.peek() == ')'){
@@ -125,7 +127,8 @@ std::istream &operator>>(std::istream &ist, ComplexNumber &complexObject) {
             complexObject.Imaginary = 1;
             return ist;
         }else{
-            throw std::invalid_argument("unknown argument");
+            ist.setstate(std::ios::failbit);
+            return ist;
         }
 
     }else if(ist.peek() == '-'){
@@ -138,14 +141,15 @@ std::istream &operator>>(std::istream &ist, ComplexNumber &complexObject) {
                 complexObject.Imaginary = -1;
                 return ist;
             }else{
-                throw std::invalid_argument("unknown argument");
+                ist.setstate(std::ios::failbit);
+                return ist;
             }
         }else{
             ist.putback(i);
         }
     }
     ist >> real;
-    if(ist.peek() != '-' && ist.peek() != '+'){     /* (2) type imput*/
+    if((ist.peek() != '-' && ist.peek() != '+') || !(ist.peek())){     /* (2) type imput*/
         if(ist.peek() == ')'){
             ist >> ket;
             complexObject.Real = real;
@@ -160,8 +164,11 @@ std::istream &operator>>(std::istream &ist, ComplexNumber &complexObject) {
                 complexObject.Imaginary = real;
                 return ist;
             }
+            ist.setstate(std::ios::failbit);
+            return ist;
         }
-        throw std::invalid_argument("unknown argument");
+        ist.setstate(std::ios::failbit);
+        return ist;
     }
     ist >> oper;
     if(ist.peek() == 'i') { /* (1+i) (1-i) type */
@@ -176,17 +183,20 @@ std::istream &operator>>(std::istream &ist, ComplexNumber &complexObject) {
             }
             return ist;
         } else {
-            throw std::invalid_argument("unknown argument");
+            ist.setstate(std::ios::failbit);
+            return ist;
 
         }
     }
     ist >> imaginary;
     if(ist.peek() != 'i'){
-        throw std::invalid_argument("unknown argument");
+        ist.setstate(std::ios::failbit);
+        return ist;
     }
     ist >> i;
     if(ist.peek() != ')'){
-        throw std::invalid_argument("unknown argument");
+        ist.setstate(std::ios::failbit);
+        return ist;
     }
     ist >> ket;
 
