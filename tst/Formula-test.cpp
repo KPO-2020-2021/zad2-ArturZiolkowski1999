@@ -378,3 +378,12 @@ TEST (Exam2, CalculateStats) {
     double result = (double)(100 * (double)exam1.getScore() / (double)exam1.getQuestionNum());
     EXPECT_EQ(exam1.calculateStats(), result);
 }
+
+TEST (Exam3, FailCalculateStats) {
+
+    Exam exam1 = Exam();
+
+    exam1.setScore(10);
+    exam1.setQuestionNum(0);
+    EXPECT_THROW(exam1.calculateStats(), std::invalid_argument);
+}

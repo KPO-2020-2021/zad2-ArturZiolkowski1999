@@ -109,6 +109,9 @@ void Exam::examLoop() {;
 
 double Exam::calculateStats() {
 
+    if(this -> questionNum == 0){
+        throw std::invalid_argument("there were zero questions");
+    }
     double result = (double)(100 * (double)(this -> score) / (double)(this -> questionNum));
     std::cout << "Your score: " << (this -> score) << "/" << (this -> questionNum) << std::endl;
     std::cout << "This is: " << result << "%\n";

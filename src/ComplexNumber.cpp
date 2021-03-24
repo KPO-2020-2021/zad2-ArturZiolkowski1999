@@ -77,6 +77,7 @@ ComplexNumber ComplexNumber::operator/(const ComplexNumber &complexObject) {
 
 std::ostream &operator<<(std::ostream &ost, const ComplexNumber &complexObject) {
 
+    std::cout.precision(4);
     if(complexObject.Real == 0){
         if(complexObject.Imaginary == 1){
             ost << "(i)";

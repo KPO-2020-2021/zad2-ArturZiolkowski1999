@@ -2,12 +2,12 @@
 // Created by artur on 3/17/21.
 //
 
-#include <iostream>
-#include "ComplexNumber.h"
+
 
 #ifndef COMPLEXNUMBER_COMPLEXEXPRESION_H
 #define COMPLEXNUMBER_COMPLEXEXPRESION_H
-
+#include <iostream>
+#include "ComplexNumber.h"
 
 class ComplexExpresion {
 private:

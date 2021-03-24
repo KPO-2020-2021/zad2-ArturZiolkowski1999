@@ -1,7 +1,8 @@
-#include <iostream>
-#include <ios>
+
 #ifndef COMPLEXNUMBER_COMPLEXNUMBER_H
 #define COMPLEXNUMBER_COMPLEXNUMBER_H
+#include <iostream>
+#include <ios>
 const double MIN_THRESHOLD = 0.01;
 
 class ComplexNumber {
