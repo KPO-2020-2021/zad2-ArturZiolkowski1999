@@ -213,4 +213,23 @@ std::istream &operator>>(std::istream &ist, ComplexNumber &complexObject) {
     return ist;
 }
 
+double ComplexNumber::argument() {
+    double result = atan2((this->Imaginary), (this->Real));
+    return result;
+}
+
+ComplexNumber ComplexNumber::operator+=(const ComplexNumber &complexObject) {
+    *this = *this + complexObject;
+    return *this;
+}
+
+ComplexNumber ComplexNumber::operator/=(const ComplexNumber &complexObject) {
+    if(complexObject.Real == 0 && complexObject.Imaginary == 0){
+        throw std::invalid_argument("division by zero");
+    }else{
+        *this = *this / complexObject;
+    }
+    return *this;
+}
+
 

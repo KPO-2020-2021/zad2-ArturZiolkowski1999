@@ -3,6 +3,7 @@
 #define COMPLEXNUMBER_COMPLEXNUMBER_H
 #include <iostream>
 #include <ios>
+#include <cmath>
 const double MIN_THRESHOLD = 0.01;
 
 class ComplexNumber {
@@ -23,7 +24,9 @@ public:
     friend bool operator==(const ComplexNumber &complexObject1, const ComplexNumber &complexObject2);
     friend std::ostream & operator<<(std::ostream &ost, const ComplexNumber &complexObject);
     friend std::istream & operator>>(std::istream &ist, ComplexNumber &complexObject);
-
+    double argument();
+    ComplexNumber operator += (const ComplexNumber &complexObject);
+    ComplexNumber operator /= (const ComplexNumber &complexObject);
 };
 
 #endif //COMPLEXNUMBER_COMPLEXNUMBERS_H

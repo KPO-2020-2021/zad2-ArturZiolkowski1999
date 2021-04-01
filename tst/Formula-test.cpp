@@ -387,3 +387,47 @@ TEST (Exam3, FailCalculateStats) {
     exam1.setQuestionNum(0);
     EXPECT_THROW(exam1.calculateStats(), std::invalid_argument);
 }
+
+TEST (ComplexNumber, argument) {
+
+    ComplexNumber com1 = ComplexNumber(1,0);
+    ComplexNumber com2 = ComplexNumber(0,1);
+
+    double arg1 = com1.argument();
+    double arg2 = com2.argument();
+
+    EXPECT_EQ(arg1, 0);
+    EXPECT_EQ(arg2, (M_PI/2));
+}
+
+TEST (ComplexNumber, PlusEqual) {
+
+    ComplexNumber com1 = ComplexNumber(1,2);
+    ComplexNumber com2 = ComplexNumber(2,1);
+
+    ComplexNumber result = ComplexNumber(3,3);
+
+    EXPECT_EQ(com1+=com2, result);
+    EXPECT_EQ(com1, result);
+}
+
+TEST (ComplexNumber, DivisionEqual) {
+
+    ComplexNumber com1 = ComplexNumber(4,4);
+    ComplexNumber com2 = ComplexNumber(1,1);
+
+    ComplexNumber result = ComplexNumber(4,0);
+
+    EXPECT_EQ(com1/=com2, result);
+    EXPECT_EQ(com1, result);
+}
+
+TEST (ComplexNumber, FailDivisionEqual) {
+
+    ComplexNumber com1 = ComplexNumber(4,4);
+    ComplexNumber com2 = ComplexNumber(0,0);
+
+    ComplexNumber result = ComplexNumber(4,0);
+
+    EXPECT_THROW(com1/=com2, std::invalid_argument);
+}
